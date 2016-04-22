@@ -1,4 +1,6 @@
-package com.tictactoe.domain;
+package com.tictactoe.http.response;
+
+import com.tictactoe.domain.Element;
 
 public class IsMyTurnResponse {
 

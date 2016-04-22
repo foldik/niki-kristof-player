@@ -6,8 +6,6 @@ import java.util.Timer;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.tictactoe.domain.PutRequest;
-import com.tictactoe.domain.PutResponse;
 import com.tictactoe.domain.User;
 import com.tictactoe.http.HttpCommunicator;
 import com.tictactoe.http.HttpManagger;

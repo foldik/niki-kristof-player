@@ -3,7 +3,7 @@ package com.tictactoe.json;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.tictactoe.domain.IsMyTurnRequest;
+import com.tictactoe.http.request.IsMyTurnRequest;
 import com.tictactoe.json.serializer.IsMyTurnRequestSerializer;
 
 import static org.junit.Assert.*;

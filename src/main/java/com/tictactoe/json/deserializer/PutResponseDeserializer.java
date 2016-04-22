@@ -2,7 +2,7 @@ package com.tictactoe.json.deserializer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tictactoe.domain.PutResponse;
+import com.tictactoe.http.response.PutResponse;
 
 public class PutResponseDeserializer {
 	

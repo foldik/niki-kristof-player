@@ -1,4 +1,4 @@
-package com.tictactoe.domain;
+package com.tictactoe.http.request;
 
 public class IsMyTurnRequest {
 

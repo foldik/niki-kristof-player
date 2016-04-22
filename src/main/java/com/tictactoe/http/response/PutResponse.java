@@ -1,4 +1,4 @@
-package com.tictactoe.domain;
+package com.tictactoe.http.response;
 
 public class PutResponse {
 

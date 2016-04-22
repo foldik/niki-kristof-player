@@ -2,7 +2,7 @@ package com.tictactoe.json.serializer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tictactoe.domain.IsMyTurnRequest;
+import com.tictactoe.http.request.IsMyTurnRequest;
 
 public class IsMyTurnRequestSerializer {
 

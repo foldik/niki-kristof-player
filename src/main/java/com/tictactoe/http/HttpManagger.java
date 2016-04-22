@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
 
-import com.tictactoe.domain.IsMyTurnRequest;
-import com.tictactoe.domain.IsMyTurnResponse;
-import com.tictactoe.domain.PutRequest;
-import com.tictactoe.domain.PutResponse;
 import com.tictactoe.domain.User;
+import com.tictactoe.http.request.IsMyTurnRequest;
+import com.tictactoe.http.request.PutRequest;
+import com.tictactoe.http.response.IsMyTurnResponse;
+import com.tictactoe.http.response.PutResponse;
 import com.tictactoe.json.deserializer.JsonDeserializer;
 import com.tictactoe.json.serializer.JsonSerializer;
 
@@ -41,7 +41,6 @@ public class HttpManagger {
 	public IsMyTurnResponse isMyTurn(IsMyTurnRequest isMyTurnRequest) throws IOException {
 		String json = jsonSerializer.serializeIsMyTurnRequest(isMyTurnRequest);
 		String response = communicator.isMyTurn(json);
-		System.out.println(response);
 		return jsonDeSerializer.parseIsMyTurnResponse(response);
 	}
 	

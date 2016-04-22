@@ -1,7 +1,7 @@
 package com.tictactoe.json.serializer;
 
-import com.tictactoe.domain.IsMyTurnRequest;
-import com.tictactoe.domain.PutRequest;
+import com.tictactoe.http.request.IsMyTurnRequest;
+import com.tictactoe.http.request.PutRequest;
 
 public class JsonSerializer {
 	

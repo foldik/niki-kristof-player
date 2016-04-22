@@ -1,8 +1,8 @@
 package com.tictactoe.json.deserializer;
 
-import com.tictactoe.domain.IsMyTurnResponse;
-import com.tictactoe.domain.PutResponse;
 import com.tictactoe.domain.User;
+import com.tictactoe.http.response.IsMyTurnResponse;
+import com.tictactoe.http.response.PutResponse;
 
 public class JsonDeserializer {
 
