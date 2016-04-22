@@ -5,40 +5,19 @@ import java.util.Timer;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.tictactoe.config.AppConfig;
 import com.tictactoe.domain.User;
-import com.tictactoe.http.HttpCommunicator;
-import com.tictactoe.http.HttpManagger;
-import com.tictactoe.http.HttpRequestCreator;
-import com.tictactoe.http.HttpResponseProcessor;
-import com.tictactoe.json.deserializer.ElementDeserializer;
-import com.tictactoe.json.deserializer.IsMyTurnResponseDeserializer;
-import com.tictactoe.json.deserializer.JsonDeserializer;
-import com.tictactoe.json.deserializer.PutResponseDeserializer;
-import com.tictactoe.json.deserializer.UserDeserializer;
-import com.tictactoe.json.serializer.IsMyTurnRequestSerializer;
-import com.tictactoe.json.serializer.JsonSerializer;
-import com.tictactoe.json.serializer.PutRequestSerializer;
+import com.tictactoe.http.HttpService;
 
 public class App 
 {
     public static void main( String[] args )
     {
-    	HttpManagger httpManagger = new HttpManagger(
-    			new JsonDeserializer(
-    					new UserDeserializer(), 
-    					new ElementDeserializer(),
-    					new PutResponseDeserializer(),
-    					new IsMyTurnResponseDeserializer()),
-    			new JsonSerializer(
-    					new PutRequestSerializer(),
-    					new IsMyTurnRequestSerializer()),
-    			new HttpCommunicator(
-    					new DefaultHttpClient(), 
-    					new HttpRequestCreator("10.0.8.110", "8080"), 
-    					new HttpResponseProcessor()));
-    	
-    	httpManagger.initializeConnection();
+    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+    	HttpService httpManagger = context.getBean(HttpService.class);
+    	httpManagger.initializeConnection(new DefaultHttpClient());
     	
     	User user;
 		try {

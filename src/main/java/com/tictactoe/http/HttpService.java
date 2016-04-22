@@ -3,29 +3,34 @@ package com.tictactoe.http;
 import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tictactoe.domain.User;
 import com.tictactoe.http.request.IsMyTurnRequest;
 import com.tictactoe.http.request.PutRequest;
 import com.tictactoe.http.response.IsMyTurnResponse;
 import com.tictactoe.http.response.PutResponse;
-import com.tictactoe.json.deserializer.JsonDeserializer;
-import com.tictactoe.json.serializer.JsonSerializer;
+import com.tictactoe.json.deserializer.JsonDeserializerService;
+import com.tictactoe.json.serializer.JsonSerializerService;
 
-public class HttpManagger {
+@Service
+public class HttpService {
 
-	private JsonDeserializer jsonDeSerializer;
-	private JsonSerializer jsonSerializer;
-	private HttpCommunicator communicator;
+	private JsonDeserializerService jsonDeSerializer;
+	private JsonSerializerService jsonSerializer;
+	private HttpCommunicatorService communicator;
 
-	public HttpManagger(JsonDeserializer jsonDeSerializer, JsonSerializer jsonSerializer, HttpCommunicator communicator) {
+	@Autowired
+	public HttpService(JsonDeserializerService jsonDeSerializer, JsonSerializerService jsonSerializer, HttpCommunicatorService communicator) {
 		this.jsonDeSerializer = jsonDeSerializer;
 		this.jsonSerializer = jsonSerializer;
 		this.communicator = communicator;
 	}
 	
-	public void initializeConnection() {
-		communicator.initializeConnection();
+	public void initializeConnection(HttpClient httpClient) {
+		communicator.initializeConnection(httpClient);
 	}
 
 	public User register() throws ClientProtocolException, IOException {

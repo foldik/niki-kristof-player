@@ -4,24 +4,27 @@ import java.io.IOException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class HttpCommunicator {
+@Service
+public class HttpCommunicatorService {
 
-	private DefaultHttpClient httpClient;
-	private HttpRequestCreator httpRequestCreator;
-	private HttpResponseProcessor httpResponseProcessor;
+	private HttpClient httpClient;
+	private HttpRequestCreatorService httpRequestCreator;
+	private HttpResponseProcessorService httpResponseProcessor;
 
-	public HttpCommunicator(DefaultHttpClient httpClient, HttpRequestCreator httpRequestMaker, HttpResponseProcessor httpResponseProcessor) {
-		this.httpClient = httpClient;
+	@Autowired
+	public HttpCommunicatorService(HttpRequestCreatorService httpRequestMaker, HttpResponseProcessorService httpResponseProcessor) {
 		this.httpRequestCreator = httpRequestMaker;
 		this.httpResponseProcessor = httpResponseProcessor;
 	}
 
-	public void initializeConnection() {
-		httpClient = new DefaultHttpClient();
+	public void initializeConnection(HttpClient httpClient) {
+		this.httpClient = httpClient;
 	}
 
 	public String register() throws ClientProtocolException, IOException {

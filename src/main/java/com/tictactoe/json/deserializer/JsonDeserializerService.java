@@ -1,17 +1,22 @@
 package com.tictactoe.json.deserializer;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.tictactoe.domain.User;
 import com.tictactoe.http.response.IsMyTurnResponse;
 import com.tictactoe.http.response.PutResponse;
 
-public class JsonDeserializer {
+@Service
+public class JsonDeserializerService {
 
 	private UserDeserializer userDeserializer;
 	private ElementDeserializer elementDeserializer;
 	private PutResponseDeserializer putResponseDeserializer;
 	private IsMyTurnResponseDeserializer isMyTurnResponseDeserializer;
 
-	public JsonDeserializer(UserDeserializer userDeserializer, ElementDeserializer elementDeserializer,
+	@Autowired
+	public JsonDeserializerService(UserDeserializer userDeserializer, ElementDeserializer elementDeserializer,
 			PutResponseDeserializer putResponseDeserializer, IsMyTurnResponseDeserializer isMyTurnResponseDeserializer) {
 		this.userDeserializer = userDeserializer;
 		this.elementDeserializer = elementDeserializer;

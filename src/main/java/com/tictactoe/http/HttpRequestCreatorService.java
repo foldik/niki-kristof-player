@@ -5,8 +5,13 @@ import java.io.UnsupportedEncodingException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-public class HttpRequestCreator {
+@Service
+public class HttpRequestCreatorService {
 
 	private static final String HTTP = "http://";
 	private static final String XOXO = "/xoxo/";
@@ -20,7 +25,8 @@ public class HttpRequestCreator {
 	private String ip;
 	private String port;
 
-	public HttpRequestCreator(String ip, String port) {
+	@Autowired
+	public HttpRequestCreatorService(@Value("${game.server.ip}") String ip, @Value("${game.server.port}") String port) {
 		this.ip = ip;
 		this.port = port;
 	}

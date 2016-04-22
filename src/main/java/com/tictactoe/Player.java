@@ -6,7 +6,7 @@ import java.util.TimerTask;
 import org.apache.http.client.ClientProtocolException;
 
 import com.tictactoe.domain.User;
-import com.tictactoe.http.HttpManagger;
+import com.tictactoe.http.HttpService;
 import com.tictactoe.http.request.IsMyTurnRequest;
 import com.tictactoe.http.request.PutRequest;
 import com.tictactoe.http.response.IsMyTurnResponse;
@@ -15,9 +15,9 @@ import com.tictactoe.http.response.PutResponse;
 public class Player extends TimerTask {
 
 	private User user;
-	private HttpManagger httpManagger;
+	private HttpService httpManagger;
 	
-	public Player(User user, HttpManagger httpManagger) {
+	public Player(User user, HttpService httpManagger) {
 		this.user = user;
 		this.httpManagger = httpManagger;
 	}
