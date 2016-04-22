@@ -1,21 +1,28 @@
 package com.tictactoe.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Element {
 
-	private final Coordinate coordinate;
-	private final String type;
+	private int x;
+	
+	private int y;
+	
+	@SerializedName("t")
+	private String type;
 
-	public Element(Coordinate coordinate, String type) {
-		this.coordinate = coordinate;
+	public Element(int x, int y, String type) {
+		this.x = x;
+		this.y = y;
 		this.type = type;
 	}
 
 	public int getX() {
-		return coordinate.getX();
+		return x;
 	}
 
 	public int getY() {
-		return coordinate.getY();
+		return y;
 	}
 
 	public String getType() {
