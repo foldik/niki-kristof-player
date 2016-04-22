@@ -24,4 +24,11 @@ public class User {
 		return gid;
 	}
 
+	@Override
+	public String toString() {
+		return "User [uuid=" + uuid + ", type=" + type + ", gid=" + gid + "]";
+	}
+	
+	
+
 }
