@@ -19,7 +19,7 @@ public class UserDeserializerTest {
 	@Test
 	public void testUserDeserializer() {
 		//GIVEN
-		String json = "{\"uuid\": \"1234567890123456789\",\"type\": \"x\"}";
+		String json = "{\"uuid\": \"1234567890123456789\",\"type\": \"x\", \"gid\": \"gid-1234567890123456789\"}";
 		
 		//WHEN
 		User user = userDeserializer.deserialize(json);
@@ -27,6 +27,7 @@ public class UserDeserializerTest {
 		//THEN
 		assertEquals("1234567890123456789", user.getUuid());
 		assertEquals("x", user.getType());
+		assertEquals("gid-1234567890123456789", user.getGid());
 	}
 	
 	

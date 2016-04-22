@@ -4,10 +4,12 @@ public class User {
 
 	private String uuid;
 	private String type;
+	private String gid;
 
-	public User(String uuid, String type) {
+	public User(String uuid, String type, String gid) {
 		this.uuid = uuid;
 		this.type = type;
+		this.gid = gid;
 	}
 
 	public String getUuid() {
@@ -16,6 +18,10 @@ public class User {
 
 	public String getType() {
 		return type;
+	}
+
+	public String getGid() {
+		return gid;
 	}
 
 }
