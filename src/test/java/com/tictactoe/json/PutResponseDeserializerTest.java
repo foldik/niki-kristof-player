@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.tictactoe.domain.PutResponse;
+import com.tictactoe.json.deserializer.PutResponseDeserializer;
 
 import static org.junit.Assert.*;
 

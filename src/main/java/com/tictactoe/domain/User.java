@@ -4,12 +4,12 @@ public class User {
 
 	private String uuid;
 	private String type;
-	private String gid;
+	private String gameId;
 
-	public User(String uuid, String type, String gid) {
+	public User(String uuid, String type, String gameId) {
 		this.uuid = uuid;
 		this.type = type;
-		this.gid = gid;
+		this.gameId = gameId;
 	}
 
 	public String getUuid() {
@@ -21,12 +21,12 @@ public class User {
 	}
 
 	public String getGid() {
-		return gid;
+		return gameId;
 	}
 
 	@Override
 	public String toString() {
-		return "User [uuid=" + uuid + ", type=" + type + ", gid=" + gid + "]";
+		return "User [userId=" + uuid + ", type=" + type + ", gameId=" + gameId + "]";
 	}
 	
 	

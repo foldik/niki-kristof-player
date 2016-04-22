@@ -1,4 +1,4 @@
-package com.tictactoe.json;
+package com.tictactoe.json.serializer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

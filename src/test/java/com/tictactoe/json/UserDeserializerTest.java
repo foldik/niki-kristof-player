@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.tictactoe.domain.User;
+import com.tictactoe.json.deserializer.UserDeserializer;
 
 import static org.junit.Assert.*;
 
