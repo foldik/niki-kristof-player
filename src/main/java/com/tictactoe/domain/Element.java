@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 public class Element {
 
 	private int x;
-	
+
 	private int y;
-	
+
 	@SerializedName("t")
 	private String type;
 
@@ -27,6 +27,11 @@ public class Element {
 
 	public String getType() {
 		return type;
+	}
+
+	@Override
+	public String toString() {
+		return "Element [x=" + x + ", y=" + y + ", type=" + type + "]";
 	}
 
 }

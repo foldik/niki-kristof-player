@@ -20,7 +20,7 @@ public class PutResponseDeserializerTest {
 	@Test
 	public void testSingleElement(){
 		//GIVEN
-		String value = "{\"statuscode\": 200, \"message\": \"ok\"}";
+		String value = "{\"statusCode\": 200, \"message\": \"ok\"}";
 		
 		//WHEN
 		PutResponse putResponse = putResponseDeserializer.deserialize(value);

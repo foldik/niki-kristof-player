@@ -1,5 +1,7 @@
 package com.tictactoe.json.deserializer;
 
+import com.tictactoe.domain.IsMyTurnResponse;
+import com.tictactoe.domain.PutResponse;
 import com.tictactoe.domain.User;
 
 public class JsonDeserializer {
@@ -7,12 +9,14 @@ public class JsonDeserializer {
 	private UserDeserializer userDeserializer;
 	private ElementDeserializer elementDeserializer;
 	private PutResponseDeserializer putResponseDeserializer;
+	private IsMyTurnResponseDeserializer isMyTurnResponseDeserializer;
 
 	public JsonDeserializer(UserDeserializer userDeserializer, ElementDeserializer elementDeserializer,
-			PutResponseDeserializer putResponseDeserializer) {
+			PutResponseDeserializer putResponseDeserializer, IsMyTurnResponseDeserializer isMyTurnResponseDeserializer) {
 		this.userDeserializer = userDeserializer;
 		this.elementDeserializer = elementDeserializer;
 		this.putResponseDeserializer = putResponseDeserializer;
+		this.isMyTurnResponseDeserializer = isMyTurnResponseDeserializer;
 	}
 
 	public User parseUser(String userJson) {
@@ -22,4 +26,17 @@ public class JsonDeserializer {
 		return userDeserializer.deserialize(userJson);
 	}
 
+	public PutResponse parsePutResponse(String json) {
+		if (json == null) {
+			return null;
+		}
+		return putResponseDeserializer.deserialize(json);
+	}
+	
+	public IsMyTurnResponse parseIsMyTurnResponse(String json) {
+		if (json == null) {
+			return null;
+		}
+		return isMyTurnResponseDeserializer.deserialize(json);
+	}
 }

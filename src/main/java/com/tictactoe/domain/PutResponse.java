@@ -1,11 +1,9 @@
 package com.tictactoe.domain;
 
-import com.google.gson.annotations.SerializedName;
-
 public class PutResponse {
 
-	@SerializedName("statuscode")
 	private int statusCode;
+	
 	private String message;
 
 	public PutResponse(int statusCode, String message) {
@@ -19,6 +17,11 @@ public class PutResponse {
 
 	public String getMessage() {
 		return message;
+	}
+
+	@Override
+	public String toString() {
+		return "PutResponse [statusCode=" + statusCode + ", message=" + message + "]";
 	}
 
 }

@@ -1,9 +1,12 @@
 package com.tictactoe.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
 
 	private String uuid;
 	private String type;
+	@SerializedName("gid")
 	private String gameId;
 
 	public User(String uuid, String type, String gameId) {
