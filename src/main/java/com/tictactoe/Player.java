@@ -12,10 +12,11 @@ import org.springframework.stereotype.Component;
 
 import com.tictactoe.domain.Coordinate;
 import com.tictactoe.domain.User;
-import com.tictactoe.http.HttpService;
+import com.tictactoe.http.GameService;
 import com.tictactoe.http.domain.request.IsMyTurnRequest;
 import com.tictactoe.http.domain.request.PutRequest;
 import com.tictactoe.http.domain.request.StatusRequest;
+import com.tictactoe.http.domain.response.GameListResponse;
 import com.tictactoe.http.domain.response.IsMyTurnResponse;
 import com.tictactoe.http.domain.response.PutResponse;
 import com.tictactoe.http.domain.response.StatusResponse;
@@ -29,15 +30,15 @@ public class Player extends TimerTask {
 
 	private User user;
 	private Strategy strategy;
-	private HttpService httpManagger;
+	private GameService gameService;
 	
 	@Autowired
-	public Player(HttpService httpManagger) {
-		this.httpManagger = httpManagger;
+	public Player(GameService gameService) {
+		this.gameService = gameService;
 	}
 	
 	public void initializeConnection(HttpClient httpClient) {
-		httpManagger.initializeConnection(httpClient);
+		gameService.initializeConnection(httpClient);
 	}
 	
 	public void setStrategy(Strategy strategy) {
@@ -47,7 +48,7 @@ public class Player extends TimerTask {
 	public void register() {
 		logger.info("Registering");
 		try {
-			user = httpManagger.register();
+			user = gameService.register();
 		} catch (ClientProtocolException e) {
 			destroyTask(e);
 		} catch (IOException e) {
@@ -59,6 +60,7 @@ public class Player extends TimerTask {
 	@Override
 	public void run() {
 		try {
+			getGameList();
 			IsMyTurnResponse isMyTurnResponse = checkIsMyTurn();
 			if (isMyTurnResponse.isMyTurn()) {
 				StatusResponse statusResponse = getStatus();
@@ -72,16 +74,22 @@ public class Player extends TimerTask {
     	
 	}
 	
+	private void getGameList() throws ClientProtocolException, IOException {
+		logger.info("Get game list");
+		GameListResponse gameListResponse = gameService.getGameList();
+		logger.info("Game list: {}", gameListResponse);		
+	}
+
 	private IsMyTurnResponse checkIsMyTurn() throws IOException {
 		logger.info("Check is my turn");
-		IsMyTurnResponse isMyTurnResponse = httpManagger.isMyTurn(new IsMyTurnRequest(user.getUuid()));
+		IsMyTurnResponse isMyTurnResponse = gameService.isMyTurn(new IsMyTurnRequest(user.getUuid()));
 		logger.info("Is my trun response: {}", isMyTurnResponse);
 		return isMyTurnResponse;
 	}
 	
 	private StatusResponse getStatus() throws ClientProtocolException, IOException {
 		logger.info("Get status");
-		StatusResponse statusResponse = httpManagger.getStatus(new StatusRequest(user.getGid()));
+		StatusResponse statusResponse = gameService.getStatus(new StatusRequest(user.getGid()));
 		logger.info("Status: {}", statusResponse);
 		return statusResponse;
 	}
@@ -90,14 +98,14 @@ public class Player extends TimerTask {
 		Coordinate coordinate = strategy.nextMove(statusResponse.getElements());
 		PutRequest putRequest = new PutRequest(user.getUuid(), coordinate.getX(), coordinate.getY());
 		logger.info("Put request: {}", putRequest);
-		PutResponse putResponse = httpManagger.put(putRequest);
+		PutResponse putResponse = gameService.put(putRequest);
 		logger.info("Put response: {}", putResponse);
 	}
 	
 	private void destroyTask(IOException ioException) {
 		logger.info(ioException.getMessage());
 		logger.info("Close connection");
-		httpManagger.closeConnection();
+		gameService.closeConnection();
 		cancel();
 	}
 

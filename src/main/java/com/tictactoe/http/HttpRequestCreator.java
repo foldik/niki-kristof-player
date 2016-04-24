@@ -7,10 +7,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
-public class HttpRequestCreatorService {
+@Component
+public class HttpRequestCreator {
 
 	private static final String HTTP = "http://";
 	private static final String XOXO = "/xoxo/";
@@ -26,7 +27,7 @@ public class HttpRequestCreatorService {
 	private String port;
 
 	@Autowired
-	public HttpRequestCreatorService(@Value("${game.server.ip}") String ip, @Value("${game.server.port}") String port) {
+	public HttpRequestCreator(@Value("${game.server.ip}") String ip, @Value("${game.server.port}") String port) {
 		this.ip = ip;
 		this.port = port;
 	}

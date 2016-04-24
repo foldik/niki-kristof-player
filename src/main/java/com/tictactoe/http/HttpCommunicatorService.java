@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 public class HttpCommunicatorService {
 
 	private HttpClient httpClient;
-	private HttpRequestCreatorService httpRequestCreator;
-	private HttpResponseProcessorService httpResponseProcessor;
+	private HttpRequestCreator httpRequestCreator;
+	private HttpResponseProcessor httpResponseProcessor;
 
 	@Autowired
-	public HttpCommunicatorService(HttpRequestCreatorService httpRequestMaker,
-			HttpResponseProcessorService httpResponseProcessor) {
-		this.httpRequestCreator = httpRequestMaker;
+	public HttpCommunicatorService(HttpRequestCreator httpRequestCreator,
+			HttpResponseProcessor httpResponseProcessor) {
+		this.httpRequestCreator = httpRequestCreator;
 		this.httpResponseProcessor = httpResponseProcessor;
 	}
 
@@ -52,9 +52,9 @@ public class HttpCommunicatorService {
 		return httpResponseProcessor.getJsonContent(response);
 	}
 
-	public String listGame() throws ClientProtocolException, IOException {
-		HttpGet getRequest = httpRequestCreator.getGameListRequest();
-		HttpResponse response = httpClient.execute(getRequest);
+	public String getGameList() throws ClientProtocolException, IOException {
+		HttpGet request = httpRequestCreator.getGameListRequest();
+		HttpResponse response = httpClient.execute(request);
 		return httpResponseProcessor.getJsonContent(response);
 	}
 

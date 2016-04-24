@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.tictactoe.domain.Element;
 import com.tictactoe.domain.User;
+import com.tictactoe.http.domain.response.Game;
+import com.tictactoe.http.domain.response.GameListResponse;
 import com.tictactoe.http.domain.response.IsMyTurnResponse;
 import com.tictactoe.http.domain.response.PutResponse;
 import com.tictactoe.http.domain.response.StatusResponse;
@@ -47,5 +49,12 @@ public class JsonDeserializerService {
 			return null;
 		}
 		return new StatusResponse(Arrays.asList(jsonDeserializer.deserialize(json, Element[].class)));
+	}
+
+	public GameListResponse parseGameListResponse(String json) {
+		if (json == null) {
+			return null;
+		}
+		return new GameListResponse(Arrays.asList(jsonDeserializer.deserialize(json, Game[].class)));
 	}
 }

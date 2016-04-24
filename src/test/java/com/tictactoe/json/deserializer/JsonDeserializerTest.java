@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.tictactoe.domain.Element;
 import com.tictactoe.domain.User;
+import com.tictactoe.http.domain.response.Game;
 import com.tictactoe.http.domain.response.IsMyTurnResponse;
 import com.tictactoe.http.domain.response.PutResponse;
 
@@ -70,17 +71,33 @@ public class JsonDeserializerTest {
 		String value = "[{\"x\": 10, \"y\": 20, \"t\": \"x\"}, {\"x\": 11, \"y\": 21, \"t\": \"o\"}]";
 				
 		//WHEN
-		List<Element> elements = Arrays.asList(jsonDeserializer.deserialize(value, Element[].class));
+		Element[] elements = jsonDeserializer.deserialize(value, Element[].class);
 		
 		//THEN
-		assertEquals(2, elements.size());
+		assertEquals(2, elements.length);
 		
-		assertEquals(10, elements.get(0).getX());
-		assertEquals(20, elements.get(0).getY());
-		assertEquals("x", elements.get(0).getType());
+		assertEquals(10, elements[0].getX());
+		assertEquals(20, elements[0].getY());
+		assertEquals("x", elements[0].getType());
 		
-		assertEquals(11, elements.get(1).getX());
-		assertEquals(21, elements.get(1).getY());
-		assertEquals("o", elements.get(1).getType());
+		assertEquals(11, elements[1].getX());
+		assertEquals(21, elements[1].getY());
+		assertEquals("o", elements[1].getType());
+	}
+	
+	@Test
+	public void testGameListDeserialization() {
+		//GIVEN
+		String json = "[{\"gid\":\"123-gid\"},{\"gid\":\"456-gid\"}]";
+		
+		//WHEN
+		Game[] games = jsonDeserializer.deserialize(json, Game[].class);
+		
+		//THEN
+		assertEquals(2, games.length);
+		
+		assertEquals("123-gid", games[0].getGameId());
+		
+		assertEquals("456-gid", games[1].getGameId());
 	}
 }

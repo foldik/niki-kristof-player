@@ -5,10 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.apache.http.HttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
-public class HttpResponseProcessorService {
+@Component
+public class HttpResponseProcessor {
 	
 	public String getJsonContent(HttpResponse httpResponse) throws IOException {
 		StringBuilder responseContent = new StringBuilder();
