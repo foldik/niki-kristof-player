@@ -18,7 +18,8 @@ public class HttpCommunicatorService {
 	private HttpResponseProcessorService httpResponseProcessor;
 
 	@Autowired
-	public HttpCommunicatorService(HttpRequestCreatorService httpRequestMaker, HttpResponseProcessorService httpResponseProcessor) {
+	public HttpCommunicatorService(HttpRequestCreatorService httpRequestMaker,
+			HttpResponseProcessorService httpResponseProcessor) {
 		this.httpRequestCreator = httpRequestMaker;
 		this.httpResponseProcessor = httpResponseProcessor;
 	}
@@ -32,19 +33,25 @@ public class HttpCommunicatorService {
 		HttpResponse response = httpClient.execute(getRequest);
 		return httpResponseProcessor.getJsonContent(response);
 	}
-	
+
 	public String put(String json) throws IOException {
 		HttpPost request = httpRequestCreator.getPutRequest(json);
 		HttpResponse response = httpClient.execute(request);
 		return httpResponseProcessor.getJsonContent(response);
 	}
-	
+
 	public String isMyTurn(String json) throws IOException {
 		HttpPost request = httpRequestCreator.getIsMyTurnRequest(json);
 		HttpResponse response = httpClient.execute(request);
 		return httpResponseProcessor.getJsonContent(response);
 	}
-	
+
+	public String getStatus(String json) throws ClientProtocolException, IOException {
+		HttpPost request = httpRequestCreator.getStatusRequest(json);
+		HttpResponse response = httpClient.execute(request);
+		return httpResponseProcessor.getJsonContent(response);
+	}
+
 	public String listGame() throws ClientProtocolException, IOException {
 		HttpGet getRequest = httpRequestCreator.getGameListRequest();
 		HttpResponse response = httpClient.execute(getRequest);

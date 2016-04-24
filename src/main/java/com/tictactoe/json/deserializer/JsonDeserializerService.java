@@ -1,47 +1,51 @@
 package com.tictactoe.json.deserializer;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tictactoe.domain.Element;
 import com.tictactoe.domain.User;
-import com.tictactoe.http.response.IsMyTurnResponse;
-import com.tictactoe.http.response.PutResponse;
+import com.tictactoe.http.domain.response.IsMyTurnResponse;
+import com.tictactoe.http.domain.response.PutResponse;
+import com.tictactoe.http.domain.response.StatusResponse;
 
 @Service
 public class JsonDeserializerService {
 
-	private UserDeserializer userDeserializer;
-	private ElementDeserializer elementDeserializer;
-	private PutResponseDeserializer putResponseDeserializer;
-	private IsMyTurnResponseDeserializer isMyTurnResponseDeserializer;
+	private JsonDeserializer jsonDeserializer;
 
 	@Autowired
-	public JsonDeserializerService(UserDeserializer userDeserializer, ElementDeserializer elementDeserializer,
-			PutResponseDeserializer putResponseDeserializer, IsMyTurnResponseDeserializer isMyTurnResponseDeserializer) {
-		this.userDeserializer = userDeserializer;
-		this.elementDeserializer = elementDeserializer;
-		this.putResponseDeserializer = putResponseDeserializer;
-		this.isMyTurnResponseDeserializer = isMyTurnResponseDeserializer;
+	public JsonDeserializerService(JsonDeserializer jsonDeserializer) {
+		this.jsonDeserializer = jsonDeserializer;
 	}
 
 	public User parseUser(String userJson) {
 		if (userJson == null) {
 			return null;
 		}
-		return userDeserializer.deserialize(userJson);
+		return jsonDeserializer.deserialize(userJson,  User.class);
 	}
 
 	public PutResponse parsePutResponse(String json) {
 		if (json == null) {
 			return null;
 		}
-		return putResponseDeserializer.deserialize(json);
+		return jsonDeserializer.deserialize(json, PutResponse.class);
 	}
 	
 	public IsMyTurnResponse parseIsMyTurnResponse(String json) {
 		if (json == null) {
 			return null;
 		}
-		return isMyTurnResponseDeserializer.deserialize(json);
+		return jsonDeserializer.deserialize(json, IsMyTurnResponse.class);
+	}
+	
+	public StatusResponse parseStatusResponse(String json) {
+		if (json == null) {
+			return null;
+		}
+		return new StatusResponse(Arrays.asList(jsonDeserializer.deserialize(json, Element[].class)));
 	}
 }

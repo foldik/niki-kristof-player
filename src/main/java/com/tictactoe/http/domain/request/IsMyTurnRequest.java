@@ -1,4 +1,4 @@
-package com.tictactoe.http.request;
+package com.tictactoe.http.domain.request;
 
 public class IsMyTurnRequest {
 
@@ -10,6 +10,11 @@ public class IsMyTurnRequest {
 
 	public String getUuid() {
 		return uuid;
+	}
+
+	@Override
+	public String toString() {
+		return "IsMyTurnRequest [uuid=" + uuid + "]";
 	}
 
 }

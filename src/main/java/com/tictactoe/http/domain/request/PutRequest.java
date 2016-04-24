@@ -1,4 +1,4 @@
-package com.tictactoe.http.request;
+package com.tictactoe.http.domain.request;
 
 public class PutRequest {
 
@@ -22,6 +22,11 @@ public class PutRequest {
 
 	public int getY() {
 		return y;
+	}
+
+	@Override
+	public String toString() {
+		return "PutRequest [uuid=" + uuid + ", x=" + x + ", y=" + y + "]";
 	}
 
 }

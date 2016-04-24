@@ -10,12 +10,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.tictactoe.domain.Coordinate;
 import com.tictactoe.domain.User;
 import com.tictactoe.http.HttpService;
-import com.tictactoe.http.request.IsMyTurnRequest;
-import com.tictactoe.http.request.PutRequest;
-import com.tictactoe.http.response.IsMyTurnResponse;
-import com.tictactoe.http.response.PutResponse;
+import com.tictactoe.http.domain.request.IsMyTurnRequest;
+import com.tictactoe.http.domain.request.PutRequest;
+import com.tictactoe.http.domain.request.StatusRequest;
+import com.tictactoe.http.domain.response.IsMyTurnResponse;
+import com.tictactoe.http.domain.response.PutResponse;
+import com.tictactoe.http.domain.response.StatusResponse;
+
+import strategy.Strategy;
 
 @Component
 public class Player extends TimerTask {
@@ -23,6 +28,7 @@ public class Player extends TimerTask {
 	private static final Logger logger = LoggerFactory.getLogger(Player.class);
 
 	private User user;
+	private Strategy strategy;
 	private HttpService httpManagger;
 	
 	@Autowired
@@ -32,6 +38,10 @@ public class Player extends TimerTask {
 	
 	public void initializeConnection(HttpClient httpClient) {
 		httpManagger.initializeConnection(httpClient);
+	}
+	
+	public void setStrategy(Strategy strategy) {
+		this.strategy = strategy;
 	}
 
 	public void register() {
@@ -51,7 +61,8 @@ public class Player extends TimerTask {
 		try {
 			IsMyTurnResponse isMyTurnResponse = checkIsMyTurn();
 			if (isMyTurnResponse.isMyTurn()) {
-				put();
+				StatusResponse statusResponse = getStatus();
+				put(statusResponse);
 			}
 		} catch (ClientProtocolException e) {
 			destroyTask(e);
@@ -68,9 +79,18 @@ public class Player extends TimerTask {
 		return isMyTurnResponse;
 	}
 	
-	private void put() throws IOException {
-		logger.info("Put");
-		PutResponse putResponse = httpManagger.put(new PutRequest(user.getUuid(), (int) (Math.random() * 50), (int) (Math.random() * 50)));
+	private StatusResponse getStatus() throws ClientProtocolException, IOException {
+		logger.info("Get status");
+		StatusResponse statusResponse = httpManagger.getStatus(new StatusRequest(user.getGid()));
+		logger.info("Status: {}", statusResponse);
+		return statusResponse;
+	}
+	
+	private void put(StatusResponse statusResponse) throws IOException {
+		Coordinate coordinate = strategy.nextMove(statusResponse.getElements());
+		PutRequest putRequest = new PutRequest(user.getUuid(), coordinate.getX(), coordinate.getY());
+		logger.info("Put request: {}", putRequest);
+		PutResponse putResponse = httpManagger.put(putRequest);
 		logger.info("Put response: {}", putResponse);
 	}
 	

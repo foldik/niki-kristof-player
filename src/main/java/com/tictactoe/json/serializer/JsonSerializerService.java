@@ -3,27 +3,30 @@ package com.tictactoe.json.serializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tictactoe.http.request.IsMyTurnRequest;
-import com.tictactoe.http.request.PutRequest;
+import com.tictactoe.http.domain.request.IsMyTurnRequest;
+import com.tictactoe.http.domain.request.PutRequest;
+import com.tictactoe.http.domain.request.StatusRequest;
 
 @Service
 public class JsonSerializerService {
 	
-	private PutRequestSerializer putRequestSerializer;
-	private IsMyTurnRequestSerializer isMyTurnRequestSerializer;
+	private JsonSerializer jsonSerializer;
 
 	@Autowired
-	public JsonSerializerService(PutRequestSerializer putRequestSerializer, IsMyTurnRequestSerializer isMyTurnRequestSerializer) {
-		this.putRequestSerializer = putRequestSerializer;
-		this.isMyTurnRequestSerializer = isMyTurnRequestSerializer;
+	public JsonSerializerService(JsonSerializer jsonSerializer) {
+		this.jsonSerializer = jsonSerializer;
 	}
 	
 	public String serializePutRequest(PutRequest putRequest) {
-		return putRequestSerializer.serialize(putRequest);
+		return jsonSerializer.serialize(putRequest);
 	}
 	
 	public String serializeIsMyTurnRequest(IsMyTurnRequest isMyTurnRequest) {
-		return isMyTurnRequestSerializer.serialize(isMyTurnRequest);
+		return jsonSerializer.serialize(isMyTurnRequest);
 	}
 
+	public String serializeStatusRequest(StatusRequest statusRequest){
+		return jsonSerializer.serialize(statusRequest);
+	}
+	
 }

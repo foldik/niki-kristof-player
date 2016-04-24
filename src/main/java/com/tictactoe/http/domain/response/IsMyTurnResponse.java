@@ -1,4 +1,4 @@
-package com.tictactoe.http.response;
+package com.tictactoe.http.domain.response;
 
 import com.tictactoe.domain.Element;
 
