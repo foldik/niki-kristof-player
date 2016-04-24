@@ -34,7 +34,8 @@ public class HttpService {
 	}
 
 	public User register() throws ClientProtocolException, IOException {
-		return jsonDeSerializer.parseUser(communicator.register());
+		String response = communicator.register();
+		return jsonDeSerializer.parseUser(response);
 	}
 	
 	public PutResponse put(PutRequest putRequest) throws IOException {
