@@ -1,4 +1,4 @@
-package com.tictactoe.dummystartegy;
+package com.tictactoe.dummystrategy;
 
 import java.util.List;
 

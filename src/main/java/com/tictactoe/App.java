@@ -6,7 +6,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.tictactoe.config.AppConfig;
-import com.tictactoe.dummystartegy.DummyStrategy;
+import com.tictactoe.dummystrategy.DummyStrategy;
 
 public class App {
 	
