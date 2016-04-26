@@ -23,4 +23,8 @@ public class LineHolder {
 		}
 		lines.get(id).add(element);
 	}
+	
+	public Map<Integer, Line> getLines() {
+		return lines;
+	}
 }
