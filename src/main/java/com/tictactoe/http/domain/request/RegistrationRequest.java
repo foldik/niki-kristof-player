@@ -7,4 +7,10 @@ public class RegistrationRequest {
 	public RegistrationRequest(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "RegistrationRequest [name=" + name + "]";
+	}
+
 }

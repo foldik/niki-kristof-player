@@ -48,9 +48,11 @@ public class Player extends TimerTask {
 	}
 
 	public void register(String playerName) {
-		logger.info("Registering");
+		RegistrationRequest registrationRequest = new RegistrationRequest(playerName);
+		logger.info("Registering with request. {}", registrationRequest);
 		try {
-			RegistrationResponse registrationResponse = gameService.register(new RegistrationRequest(playerName));
+			RegistrationResponse registrationResponse = gameService.register(registrationRequest);
+			logger.info("Registering response: {}", registrationResponse);
 			user = new User();
 			user.setName(playerName);
 			user.setUuid(registrationResponse.getUuid());

@@ -67,6 +67,7 @@ public class HttpRequestCreator {
 	}
 
 	private HttpPost createPostRequest(String url, String params) throws UnsupportedEncodingException {
+		System.out.println(params);
 		HttpPost request = new HttpPost(url);
 		request.addHeader("accept", "application/json");
 		request.setEntity(new StringEntity(params));

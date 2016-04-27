@@ -3,7 +3,7 @@ package com.tictactoe.http.domain.response;
 import com.google.gson.annotations.SerializedName;
 
 public class RegistrationResponse {
-
+	
 	private int statusCode;
 	private String message;
 	private String uuid;
