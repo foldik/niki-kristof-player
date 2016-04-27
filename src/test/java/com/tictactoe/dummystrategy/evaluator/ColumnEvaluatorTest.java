@@ -16,17 +16,17 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
-public class RowEvaluatorTest {
+public class ColumnEvaluatorTest {
 
 	@Mock
 	private Line line;
 	
-	private RowEvaluator rowEvaluator;
+	private ColumnEvaluator columnEvaluator;
 	
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		rowEvaluator = new RowEvaluator();
+		columnEvaluator = new ColumnEvaluator();
 	}
 	
 	@Test
@@ -34,41 +34,41 @@ public class RowEvaluatorTest {
 		// GIVEN
 		List<Element> elements = Arrays.asList(
 				new Element(0, 0, BorderPiece.O),
-				new Element(1, 0, BorderPiece.X),
-				new Element(2, 0, BorderPiece.X),
-				new Element(3, 0, BorderPiece.X),
-				new Element(4, 0, BorderPiece.X)
+				new Element(0, 1, BorderPiece.X),
+				new Element(0, 2, BorderPiece.X),
+				new Element(0, 3, BorderPiece.X),
+				new Element(0, 4, BorderPiece.X)
 				);
 		when(line.getElements()).thenReturn(elements);
 		
 		//WHEN
-		List<Coordinate> winnerCoordinates = rowEvaluator.evaluate(line, BorderPiece.X);
+		List<Coordinate> winnerCoordinates = columnEvaluator.evaluate(line, BorderPiece.X);
 		
 		//THEN
 		assertEquals(1, winnerCoordinates.size());
 		
-		assertEquals(new Coordinate(5, 0), winnerCoordinates.get(0));
+		assertEquals(new Coordinate(0, 5), winnerCoordinates.get(0));
 	}
 	
 	@Test
 	public void testWithFourXTwoSideWinner() {
 		// GIVEN
 		List<Element> elements = Arrays.asList(
-				new Element(1, 0, BorderPiece.X),
-				new Element(2, 0, BorderPiece.X),
-				new Element(3, 0, BorderPiece.X),
-				new Element(4, 0, BorderPiece.X)
+				new Element(0, 1, BorderPiece.X),
+				new Element(0, 2, BorderPiece.X),
+				new Element(0, 3, BorderPiece.X),
+				new Element(0, 4, BorderPiece.X)
 				);
 		when(line.getElements()).thenReturn(elements);
 		
 		//WHEN
-		List<Coordinate> winnerCoordinates = rowEvaluator.evaluate(line, BorderPiece.X);
+		List<Coordinate> winnerCoordinates = columnEvaluator.evaluate(line, BorderPiece.X);
 		
 		//THEN
 		assertEquals(2, winnerCoordinates.size());
 		
 		assertEquals(new Coordinate(0, 0), winnerCoordinates.get(0));
-		assertEquals(new Coordinate(5, 0), winnerCoordinates.get(1));
+		assertEquals(new Coordinate(0, 5), winnerCoordinates.get(1));
 	}
 	
 	@Test
@@ -76,56 +76,56 @@ public class RowEvaluatorTest {
 		// GIVEN
 		List<Element> elements = Arrays.asList(
 				new Element(0, 0, BorderPiece.X),
-				new Element(2, 0, BorderPiece.X),
-				new Element(3, 0, BorderPiece.X),
-				new Element(4, 0, BorderPiece.X)
+				new Element(0, 2, BorderPiece.X),
+				new Element(0, 3, BorderPiece.X),
+				new Element(0, 4, BorderPiece.X)
 				);
 		when(line.getElements()).thenReturn(elements);
 		
 		//WHEN
-		List<Coordinate> winnerCoordinates = rowEvaluator.evaluate(line, BorderPiece.X);
+		List<Coordinate> winnerCoordinates = columnEvaluator.evaluate(line, BorderPiece.X);
 		
 		//THEN
 		assertEquals(1, winnerCoordinates.size());
 		
-		assertEquals(new Coordinate(1, 0), winnerCoordinates.get(0));
+		assertEquals(new Coordinate(0, 1), winnerCoordinates.get(0));
 	}
 	
 	@Test
 	public void testWithOneXOneEmptyFourX() {
 		// GIVEN
 		List<Element> elements = Arrays.asList(
-				new Element(-2, 0, BorderPiece.X),
+				new Element(0,-2, BorderPiece.X),
 				new Element(0, 0, BorderPiece.X),
-				new Element(2, 0, BorderPiece.X),
-				new Element(3, 0, BorderPiece.X),
-				new Element(4, 0, BorderPiece.X)
+				new Element(0, 2, BorderPiece.X),
+				new Element(0, 3, BorderPiece.X),
+				new Element(0, 4, BorderPiece.X)
 				);
 		when(line.getElements()).thenReturn(elements);
 		
 		//WHEN
-		List<Coordinate> winnerCoordinates = rowEvaluator.evaluate(line, BorderPiece.X);
+		List<Coordinate> winnerCoordinates = columnEvaluator.evaluate(line, BorderPiece.X);
 		
 		//THEN
 		assertEquals(2, winnerCoordinates.size());
 		
-		assertEquals(new Coordinate(-1, 0), winnerCoordinates.get(0));
-		assertEquals(new Coordinate(5, 0), winnerCoordinates.get(0));
+		assertEquals(new Coordinate(0, -1), winnerCoordinates.get(0));
+		assertEquals(new Coordinate(0, 5), winnerCoordinates.get(0));
 	}
 	
 	@Test
 	public void testWithOneXTwoEmptyThreeX() {
 		// GIVEN
 		List<Element> elements = Arrays.asList(
-				new Element(-1, 0, BorderPiece.X),
-				new Element(2, 0, BorderPiece.X),
-				new Element(3, 0, BorderPiece.X),
-				new Element(4, 0, BorderPiece.X)
+				new Element(0, -1, BorderPiece.X),
+				new Element(0, 2, BorderPiece.X),
+				new Element(0, 3, BorderPiece.X),
+				new Element(0, 4, BorderPiece.X)
 				);
 		when(line.getElements()).thenReturn(elements);
 		
 		//WHEN
-		List<Coordinate> winnerCoordinates = rowEvaluator.evaluate(line, BorderPiece.X);
+		List<Coordinate> winnerCoordinates = columnEvaluator.evaluate(line, BorderPiece.X);
 		
 		//THEN
 		assertEquals(0, winnerCoordinates.size());
@@ -135,17 +135,17 @@ public class RowEvaluatorTest {
 	public void testWithFourXBothSidesClosed() {
 		// GIVEN
 		List<Element> elements = Arrays.asList(
-				new Element(1, 0, BorderPiece.O),
-				new Element(2, 0, BorderPiece.X),
-				new Element(3, 0, BorderPiece.X),
-				new Element(4, 0, BorderPiece.X),
-				new Element(5, 0, BorderPiece.X),
-				new Element(6, 0, BorderPiece.O)
+				new Element(0, 1, BorderPiece.O),
+				new Element(0, 2, BorderPiece.X),
+				new Element(0, 3, BorderPiece.X),
+				new Element(0, 4, BorderPiece.X),
+				new Element(0, 5, BorderPiece.X),
+				new Element(0, 6, BorderPiece.O)
 				);
 		when(line.getElements()).thenReturn(elements);
 		
 		//WHEN
-		List<Coordinate> winnerCoordinates = rowEvaluator.evaluate(line, BorderPiece.X);
+		List<Coordinate> winnerCoordinates = columnEvaluator.evaluate(line, BorderPiece.X);
 		
 		//THEN
 		assertEquals(0, winnerCoordinates.size());
@@ -155,16 +155,16 @@ public class RowEvaluatorTest {
 	public void testWithOneXOneOThreeX() {
 		// GIVEN
 		List<Element> elements = Arrays.asList(
-				new Element(1, 0, BorderPiece.X),
-				new Element(2, 0, BorderPiece.O),
-				new Element(3, 0, BorderPiece.X),
-				new Element(4, 0, BorderPiece.X),
-				new Element(5, 0, BorderPiece.X)
+				new Element(0, 1, BorderPiece.X),
+				new Element(0, 2, BorderPiece.O),
+				new Element(0, 3, BorderPiece.X),
+				new Element(0, 4, BorderPiece.X),
+				new Element(0, 5, BorderPiece.X)
 				);
 		when(line.getElements()).thenReturn(elements);
 		
 		//WHEN
-		List<Coordinate> winnerCoordinates = rowEvaluator.evaluate(line, BorderPiece.X);
+		List<Coordinate> winnerCoordinates = columnEvaluator.evaluate(line, BorderPiece.X);
 		
 		//THEN
 		assertEquals(0, winnerCoordinates.size());
