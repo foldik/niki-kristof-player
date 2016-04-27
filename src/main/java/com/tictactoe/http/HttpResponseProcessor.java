@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 
 import org.apache.http.HttpResponse;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class HttpResponseProcessor {

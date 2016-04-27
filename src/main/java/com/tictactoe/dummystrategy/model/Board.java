@@ -1,21 +1,27 @@
 package com.tictactoe.dummystrategy.model;
 
-import java.util.List;
-
 import com.tictactoe.domain.Element;
 
 public class Board {
 
-	private List<LineHolder> lineHolders;
+	private LineHolder rows;
+	private LineHolder columns;
+	private LineHolder rightDiagonals;
+	private LineHolder leftDiagonals;
 
-	public Board(List<LineHolder> lineHolders) {
-		this.lineHolders = lineHolders;
+	public Board(LineHolder rows, LineHolder columns, LineHolder rightDiagonals, LineHolder leftDiagonals) {
+		super();
+		this.rows = rows;
+		this.columns = columns;
+		this.rightDiagonals = rightDiagonals;
+		this.leftDiagonals = leftDiagonals;
 	}
 
 	public void add(Element element) {
-		for (LineHolder lineHolder : lineHolders) {
-			lineHolder.add(element);
-		}
+		rows.add(element);
+		columns.add(element);
+		rightDiagonals.add(element);
+		leftDiagonals.add(element);
 	}
 
 }

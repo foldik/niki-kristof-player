@@ -26,7 +26,7 @@ public class Line {
 	public static class ElementComparator implements Comparator<Element> {
 		
 		public static ElementComparator getInstance() {
-			return InstanceHolder.INSATENCE;
+			return InstanceHolder.INSTANCE;
 		}
 
 		@Override
@@ -40,7 +40,7 @@ public class Line {
 		}
 
 		private static class InstanceHolder {
-			public static final ElementComparator INSATENCE = new ElementComparator();
+			public static final ElementComparator INSTANCE = new ElementComparator();
 		}
 	}
 }
