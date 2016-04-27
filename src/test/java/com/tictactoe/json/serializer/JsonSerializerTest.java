@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.tictactoe.http.domain.request.IsMyTurnRequest;
 import com.tictactoe.http.domain.request.PutRequest;
+import com.tictactoe.http.domain.request.RegistrationRequest;
 import com.tictactoe.http.domain.request.StatusRequest;
 
 public class JsonSerializerTest {
@@ -16,6 +17,18 @@ public class JsonSerializerTest {
 	@Before
 	public void setUp() {
 		jsonSerializer = new JsonSerializer();
+	}
+	
+	@Test
+	public void testRegistrationRequestSerialization() {
+		//GIVEN
+		RegistrationRequest registrationRequest= new RegistrationRequest("NAME");
+		
+		//WHEN
+		String json = jsonSerializer.serialize(registrationRequest);
+		
+		//THEN
+		assertEquals("{\"name\":\"NAME\"}", json);
 	}
 	
 	@Test

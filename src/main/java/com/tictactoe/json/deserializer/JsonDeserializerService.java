@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tictactoe.domain.Element;
-import com.tictactoe.domain.User;
 import com.tictactoe.http.domain.response.Game;
 import com.tictactoe.http.domain.response.GameListResponse;
 import com.tictactoe.http.domain.response.IsMyTurnResponse;
 import com.tictactoe.http.domain.response.PutResponse;
+import com.tictactoe.http.domain.response.RegistrationResponse;
 import com.tictactoe.http.domain.response.StatusResponse;
 
 @Service
@@ -23,11 +23,11 @@ public class JsonDeserializerService {
 		this.jsonDeserializer = jsonDeserializer;
 	}
 
-	public User parseUser(String userJson) {
+	public RegistrationResponse parseRegistrationResponse(String userJson) {
 		if (userJson == null) {
 			return null;
 		}
-		return jsonDeserializer.deserialize(userJson,  User.class);
+		return jsonDeserializer.deserialize(userJson,  RegistrationResponse.class);
 	}
 
 	public PutResponse parsePutResponse(String json) {

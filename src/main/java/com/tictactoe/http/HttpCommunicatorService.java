@@ -28,9 +28,9 @@ public class HttpCommunicatorService {
 		this.httpClient = httpClient;
 	}
 
-	public String register() throws ClientProtocolException, IOException {
-		HttpGet getRequest = httpRequestCreator.getRegisterRequest();
-		HttpResponse response = httpClient.execute(getRequest);
+	public String register(String json) throws ClientProtocolException, IOException {
+		HttpPost request = httpRequestCreator.getRegisterRequest(json);
+		HttpResponse response = httpClient.execute(request);
 		return httpResponseProcessor.getJsonContent(response);
 	}
 

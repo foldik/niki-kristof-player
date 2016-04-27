@@ -4,34 +4,46 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
 
+	private String name;
 	private String uuid;
 	private String type;
-	@SerializedName("gid")
 	private String gameId;
 
-	public User(String uuid, String type, String gameId) {
-		this.uuid = uuid;
-		this.type = type;
-		this.gameId = gameId;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getUuid() {
 		return uuid;
 	}
 
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 	public String getType() {
 		return type;
 	}
 
-	public String getGid() {
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getGameId() {
 		return gameId;
+	}
+
+	public void setGameId(String gameId) {
+		this.gameId = gameId;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + uuid + ", type=" + type + ", gameId=" + gameId + "]";
+		return "User [name=" + name + ", uuid=" + uuid + ", type=" + type + ", gameId=" + gameId + "]";
 	}
-	
-	
 
 }

@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import com.tictactoe.domain.User;
 import com.tictactoe.http.domain.request.IsMyTurnRequest;
 import com.tictactoe.http.domain.request.PutRequest;
+import com.tictactoe.http.domain.request.RegistrationRequest;
 import com.tictactoe.http.domain.request.StatusRequest;
 import com.tictactoe.http.domain.response.GameListResponse;
 import com.tictactoe.http.domain.response.IsMyTurnResponse;
 import com.tictactoe.http.domain.response.PutResponse;
+import com.tictactoe.http.domain.response.RegistrationResponse;
 import com.tictactoe.http.domain.response.StatusResponse;
 import com.tictactoe.json.deserializer.JsonDeserializerService;
 import com.tictactoe.json.serializer.JsonSerializerService;
@@ -36,9 +38,10 @@ public class GameService {
 		httpCommunicatorService.initializeConnection(httpClient);
 	}
 
-	public User register() throws ClientProtocolException, IOException {
-		String response = httpCommunicatorService.register();
-		return jsonDeserializerService.parseUser(response);
+	public RegistrationResponse register(RegistrationRequest registrationRequest) throws ClientProtocolException, IOException {
+		String json = jsonSerializerService.serializeRegistrationRequest(registrationRequest);
+		String response = httpCommunicatorService.register(json);
+		return jsonDeserializerService.parseRegistrationResponse(response);
 	}
 	
 	public PutResponse put(PutRequest putRequest) throws IOException {

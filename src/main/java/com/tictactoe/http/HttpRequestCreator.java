@@ -31,42 +31,42 @@ public class HttpRequestCreator {
 		this.port = port;
 	}
 
-	public HttpGet getRegisterRequest() {
-		String getUrl = createUrl(REG);
-		return getRequest(getUrl);
+	public HttpPost getRegisterRequest(String params) throws UnsupportedEncodingException {
+		String url = createUrl(REG);
+		return createPostRequest(url, params);
 	}
 
 	public HttpPost getPutRequest(String params) throws UnsupportedEncodingException {
-		String putUrl = createUrl(PUT);
-		return getPostRequest(putUrl, params);
+		String url = createUrl(PUT);
+		return createPostRequest(url, params);
 	}
 
 	public HttpPost getIsMyTurnRequest(String params) throws UnsupportedEncodingException {
-		String putUrl = createUrl(IS_MY_TURN);
-		return getPostRequest(putUrl, params);
+		String url = createUrl(IS_MY_TURN);
+		return createPostRequest(url, params);
 	}
 
 	public HttpPost getStatusRequest(String params) throws UnsupportedEncodingException {
 		String statusUrl = createUrl(STATUS);
-		return getPostRequest(statusUrl, params);
+		return createPostRequest(statusUrl, params);
 	}
 
 	public HttpGet getGameListRequest() {
-		String gameListUrl = createUrl(GAME_LIST);
-		return getRequest(gameListUrl);
+		String url = createUrl(GAME_LIST);
+		return createGetRequest(url);
 	}
 
 	private String createUrl(String path) {
 		return HTTP + ip + COLON + port + XOXO + path;
 	}
 
-	private HttpGet getRequest(String url) {
+	private HttpGet createGetRequest(String url) {
 		HttpGet request = new HttpGet(url);
 		request.addHeader("accept", "application/json");
 		return request;
 	}
 
-	private HttpPost getPostRequest(String url, String params) throws UnsupportedEncodingException {
+	private HttpPost createPostRequest(String url, String params) throws UnsupportedEncodingException {
 		HttpPost request = new HttpPost(url);
 		request.addHeader("accept", "application/json");
 		request.setEntity(new StringEntity(params));

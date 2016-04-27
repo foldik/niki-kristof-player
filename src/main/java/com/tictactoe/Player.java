@@ -15,10 +15,12 @@ import com.tictactoe.domain.User;
 import com.tictactoe.http.GameService;
 import com.tictactoe.http.domain.request.IsMyTurnRequest;
 import com.tictactoe.http.domain.request.PutRequest;
+import com.tictactoe.http.domain.request.RegistrationRequest;
 import com.tictactoe.http.domain.request.StatusRequest;
 import com.tictactoe.http.domain.response.GameListResponse;
 import com.tictactoe.http.domain.response.IsMyTurnResponse;
 import com.tictactoe.http.domain.response.PutResponse;
+import com.tictactoe.http.domain.response.RegistrationResponse;
 import com.tictactoe.http.domain.response.StatusResponse;
 
 import strategy.Strategy;
@@ -45,10 +47,15 @@ public class Player extends TimerTask {
 		this.strategy = strategy;
 	}
 
-	public void register() {
+	public void register(String playerName) {
 		logger.info("Registering");
 		try {
-			user = gameService.register();
+			RegistrationResponse registrationResponse = gameService.register(new RegistrationRequest(playerName));
+			user = new User();
+			user.setName(playerName);
+			user.setUuid(registrationResponse.getUuid());
+			user.setGameId(registrationResponse.getGameId());
+			user.setType(registrationResponse.getType());
 		} catch (ClientProtocolException e) {
 			destroyTask(e);
 		} catch (IOException e) {

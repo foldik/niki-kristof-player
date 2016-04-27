@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.tictactoe.http.domain.request.IsMyTurnRequest;
 import com.tictactoe.http.domain.request.PutRequest;
+import com.tictactoe.http.domain.request.RegistrationRequest;
 import com.tictactoe.http.domain.request.StatusRequest;
 
 @Service
@@ -15,6 +16,10 @@ public class JsonSerializerService {
 	@Autowired
 	public JsonSerializerService(JsonSerializer jsonSerializer) {
 		this.jsonSerializer = jsonSerializer;
+	}
+	
+	public String serializeRegistrationRequest(RegistrationRequest registrationRequest) {
+		return jsonSerializer.serialize(registrationRequest);
 	}
 	
 	public String serializePutRequest(PutRequest putRequest) {
