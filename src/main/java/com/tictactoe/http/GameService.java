@@ -7,7 +7,6 @@ import org.apache.http.client.HttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tictactoe.domain.User;
 import com.tictactoe.http.domain.request.IsMyTurnRequest;
 import com.tictactoe.http.domain.request.PutRequest;
 import com.tictactoe.http.domain.request.RegistrationRequest;

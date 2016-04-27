@@ -52,12 +52,14 @@ public class JsonDeserializerTest {
 	@Test
 	public void testIsMyTurnResponseDeserialization() {
 		//GIVEN
-		String json = "{\"isMyTurn\": \"true\",\"lastMove\": {\"x\": 10, \"y\": 20, \"t\": \"x\"}}";
+		String json = "{\"statusCode\": 200, \"message\": \"ok\", \"isMyTurn\": \"true\",\"lastMove\": {\"x\": 10, \"y\": 20, \"t\": \"x\"}}";
 		
 		//WHEN
 		IsMyTurnResponse isMyTurnResponse = jsonDeserializer.deserialize(json, IsMyTurnResponse.class);
 		
 		//THEN
+		assertEquals(200, isMyTurnResponse.getStatusCode());
+		assertEquals("ok", isMyTurnResponse.getMessage());
 		assertEquals(true, isMyTurnResponse.isMyTurn());
 		assertEquals(10, isMyTurnResponse.getLastMove().getX());
 		assertEquals(20, isMyTurnResponse.getLastMove().getY());
