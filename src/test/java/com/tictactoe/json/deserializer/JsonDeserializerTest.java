@@ -6,10 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.tictactoe.domain.Element;
-import com.tictactoe.domain.User;
 import com.tictactoe.http.domain.response.Game;
 import com.tictactoe.http.domain.response.IsMyTurnResponse;
 import com.tictactoe.http.domain.response.PutResponse;
+import com.tictactoe.http.domain.response.RegistrationResponse;
 
 public class JsonDeserializerTest {
 
@@ -21,17 +21,19 @@ public class JsonDeserializerTest {
 	}
 	
 	@Test
-	public void testUserDeserialization() {
+	public void testRegistrationResponseDeserialization() {
 		//GIVEN
-		String json = "{\"uuid\": \"1234567890123456789\",\"type\": \"x\", \"gid\": \"gid-1234567890123456789\"}";
+		String json = "{\"statusCode\": 200, \"message\": \"ok\", \"uuid\": \"1234567890123456789\",\"type\": \"x\", \"gid\": \"gid-1234567890123456789\"}";
 		
 		//WHEN
-		User user = jsonDeserializer.deserialize(json, User.class);
+		RegistrationResponse registrationResponse = jsonDeserializer.deserialize(json, RegistrationResponse.class);
 		
 		//THEN
-		assertEquals("1234567890123456789", user.getUuid());
-		assertEquals("x", user.getType());
-		assertEquals("gid-1234567890123456789", user.getGid());
+		assertEquals(200, registrationResponse.getStatusCode());
+		assertEquals("ok", registrationResponse.getMessage());
+		assertEquals("1234567890123456789", registrationResponse.getUuid());
+		assertEquals("x", registrationResponse.getType());
+		assertEquals("gid-1234567890123456789", registrationResponse.getGameId());
 	}
 	
 	@Test

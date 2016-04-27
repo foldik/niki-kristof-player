@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 public class RegistrationResponse {
 
-	private String statusCode;
+	private int statusCode;
 	private String message;
 	private String uuid;
 	private String type;
 	@SerializedName("gid")
 	private String gameId;
 
-	public RegistrationResponse(String statusCode, String message, String uuid, String type, String gameId) {
+	public RegistrationResponse(int statusCode, String message, String uuid, String type, String gameId) {
 		super();
 		this.statusCode = statusCode;
 		this.message = message;
@@ -20,7 +20,7 @@ public class RegistrationResponse {
 		this.gameId = gameId;
 	}
 
-	public String getStatusCode() {
+	public int getStatusCode() {
 		return statusCode;
 	}
 

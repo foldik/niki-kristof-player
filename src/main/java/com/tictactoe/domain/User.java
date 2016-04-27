@@ -1,7 +1,5 @@
 package com.tictactoe.domain;
 
-import com.google.gson.annotations.SerializedName;
-
 public class User {
 
 	private String name;
@@ -36,6 +34,7 @@ public class User {
 	public String getGameId() {
 		return gameId;
 	}
+	
 
 	public void setGameId(String gameId) {
 		this.gameId = gameId;

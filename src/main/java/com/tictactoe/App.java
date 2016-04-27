@@ -16,7 +16,7 @@ public class App {
     	Player player = context.getBean(Player.class);
     	player.initializeConnection(new DefaultHttpClient());
     	player.setStrategy(new DummyStrategy());
-    	player.register();
+    	player.register("Niki és Kristóf");
     	Timer timer = new Timer(false);
     	timer.scheduleAtFixedRate(player, 0, 500);
         

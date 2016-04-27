@@ -96,7 +96,7 @@ public class Player extends TimerTask {
 	
 	private StatusResponse getStatus() throws ClientProtocolException, IOException {
 		logger.info("Get status");
-		StatusResponse statusResponse = gameService.getStatus(new StatusRequest(user.getGid()));
+		StatusResponse statusResponse = gameService.getStatus(new StatusRequest(user.getGameId()));
 		logger.info("Status: {}", statusResponse);
 		return statusResponse;
 	}

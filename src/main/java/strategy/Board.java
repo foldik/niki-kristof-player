@@ -53,7 +53,7 @@ public class Board {
 		if (p == 'x') nextPlayer = 'o';
 		else nextPlayer = 'x';
 //		winner = setWinner(p, move);
-		return new Element(move, Character.toString(p));
+		return new Element(1, 2, Character.toString(p));
 	}
 	
 	ArrayList<Coordinate> getPlayerPlaces(char p) {
