@@ -13,10 +13,6 @@ public class RowEvaluator implements LineEvaluator {
 	public List<Coordinate> evaluate(Line line, String type) {
 		List<Coordinate> winningMoves = new ArrayList<>();
 		
-		for (Element e: line.getElements()) {
-			
-		}
-		
 		return winningMoves;
 	}
 

@@ -9,38 +9,36 @@ import com.tictactoe.domain.Element;
 
 public class Line {
 
-	private TreeSet<Element> elements;
+	private TreeSet<SubLine> subLines;
 	
 	public Line() {
-		elements = new TreeSet<>(ElementComparator.getInstance());
+		subLines = new TreeSet<>(SubLineComparator.getInstance());
 	}
 	
 	public void add(Element element) {
-		elements.add(element);
-	}
-	
-	public List<Element> getElements() {
-		return new ArrayList<>(elements);
-	}
-	
-	public static class ElementComparator implements Comparator<Element> {
 		
-		public static ElementComparator getInstance() {
+	}
+	
+	public List<SubLine> getSubLines() {
+		return new ArrayList<>(subLines);
+	}
+	
+	public static class SubLineComparator implements Comparator<SubLine> {
+		
+		public static SubLineComparator getInstance() {
 			return InstanceHolder.INSTANCE;
 		}
 
 		@Override
-		public int compare(Element element1, Element element2) {
-			int yDistance = element1.getY() - element2.getY();
-			if (yDistance != 0) {
-				return yDistance;
-			} else {
-				return element1.getX() - element2.getX();
+		public int compare(SubLine subLine1, SubLine subLine2) {
+			if (subLine1.hasCommonPart(subLine2)) {
+				throw new IllegalStateException("Can not have common part is sumblimes");
 			}
+			return subLine1.compareTo(subLine2);
 		}
 
 		private static class InstanceHolder {
-			public static final ElementComparator INSTANCE = new ElementComparator();
+			public static final SubLineComparator INSTANCE = new SubLineComparator();
 		}
 	}
 }

@@ -39,7 +39,7 @@ public class LeftDiagonalEvaluatorTest {
 				new Element(3, 3, BorderPiece.X),
 				new Element(4, 4, BorderPiece.X)
 				);
-		when(line.getElements()).thenReturn(elements);
+		when(line.getSubLines()).thenReturn(elements);
 		
 		//WHEN
 		List<Coordinate> winnerCoordinates = leftDiagonalEvaluator.evaluate(line, BorderPiece.X);
@@ -59,7 +59,7 @@ public class LeftDiagonalEvaluatorTest {
 				new Element(3, 3, BorderPiece.X),
 				new Element(4, 4, BorderPiece.X)
 				);
-		when(line.getElements()).thenReturn(elements);
+		when(line.getSubLines()).thenReturn(elements);
 		
 		//WHEN
 		List<Coordinate> winnerCoordinates = leftDiagonalEvaluator.evaluate(line, BorderPiece.X);
@@ -80,7 +80,7 @@ public class LeftDiagonalEvaluatorTest {
 				new Element(3, 3, BorderPiece.X),
 				new Element(4, 4, BorderPiece.X)
 				);
-		when(line.getElements()).thenReturn(elements);
+		when(line.getSubLines()).thenReturn(elements);
 		
 		//WHEN
 		List<Coordinate> winnerCoordinates = leftDiagonalEvaluator.evaluate(line, BorderPiece.X);
@@ -101,7 +101,7 @@ public class LeftDiagonalEvaluatorTest {
 				new Element(3, 3, BorderPiece.X),
 				new Element(4, 4, BorderPiece.X)
 				);
-		when(line.getElements()).thenReturn(elements);
+		when(line.getSubLines()).thenReturn(elements);
 		
 		//WHEN
 		List<Coordinate> winnerCoordinates = leftDiagonalEvaluator.evaluate(line, BorderPiece.X);
@@ -122,7 +122,7 @@ public class LeftDiagonalEvaluatorTest {
 				new Element(3, 3, BorderPiece.X),
 				new Element(4, 4, BorderPiece.X)
 				);
-		when(line.getElements()).thenReturn(elements);
+		when(line.getSubLines()).thenReturn(elements);
 		
 		//WHEN
 		List<Coordinate> winnerCoordinates = leftDiagonalEvaluator.evaluate(line, BorderPiece.X);
@@ -142,7 +142,7 @@ public class LeftDiagonalEvaluatorTest {
 				new Element(5, 5, BorderPiece.X),
 				new Element(6, 6, BorderPiece.O)
 				);
-		when(line.getElements()).thenReturn(elements);
+		when(line.getSubLines()).thenReturn(elements);
 		
 		//WHEN
 		List<Coordinate> winnerCoordinates = leftDiagonalEvaluator.evaluate(line, BorderPiece.X);
@@ -161,7 +161,7 @@ public class LeftDiagonalEvaluatorTest {
 				new Element(4, 4, BorderPiece.X),
 				new Element(5, 5, BorderPiece.X)
 				);
-		when(line.getElements()).thenReturn(elements);
+		when(line.getSubLines()).thenReturn(elements);
 		
 		//WHEN
 		List<Coordinate> winnerCoordinates = leftDiagonalEvaluator.evaluate(line, BorderPiece.X);

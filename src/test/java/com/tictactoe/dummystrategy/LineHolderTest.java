@@ -46,7 +46,7 @@ public class LineHolderTest {
 		assertEquals(lines.entrySet().size(), 1);
 		
 		Line line = lines.get(1);
-		List<Element> elements = line.getElements();
+		List<Element> elements = line.getSubLines();
 		
 		assertEquals(elements.size(), 2);
 		assertEquals(elements.get(0), element1);
@@ -70,12 +70,12 @@ public class LineHolderTest {
 		assertEquals(lines.entrySet().size(), 2);
 		
 		Line line = lines.get(1);
-		List<Element> elements = line.getElements();
+		List<Element> elements = line.getSubLines();
 		assertEquals(elements.size(), 1);
 		assertEquals(elements.get(0), element1);
 		
 		Line line2 = lines.get(2);
-		List<Element> elements2 = line2.getElements();
+		List<Element> elements2 = line2.getSubLines();
 		assertEquals(elements2.size(), 1);
 		assertEquals(elements2.get(0), element2);
 	}
